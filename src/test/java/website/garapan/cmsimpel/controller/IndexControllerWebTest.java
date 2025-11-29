@@ -24,7 +24,7 @@ class IndexControllerWebTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(model().attributeExists("message"))
-                .andExpect(model().attribute("message", "Halo CMS!"))
+                .andExpect(model().attribute("message", "Selamat Datang di CMS Kami!"))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
     }
 
@@ -34,7 +34,7 @@ class IndexControllerWebTest {
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("Halo CMS!")));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("Sistem Informasi dengan Teknologi AI Terbaru")));
     }
 
     @Test
