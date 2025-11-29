@@ -115,41 +115,29 @@
               <i class="bi bi-rocket-takeoff me-2"></i>
               Teknologi AI Terkini
             </span>
-            <h1 class="display-3 fw-bolder mb-4 lh-tight">
-              Wujudkan Ide Digital <br />
-              <span class="text-gradient">Menjadi Maha Karya</span>
+            <h1 class="display-3 fw-bolder mb-4 lh-tight" th:utext="${heroTitle}">
             </h1>
-            <p class="lead mb-5 text-white-50 w-75">
-              Kami membantu mewujudkan ide nyata Anda menjadi sistem informasi
-              mutakhir dengan teknologi AI terbaru.
+            <p class="lead mb-5 text-white-50 w-75" th:text="${heroSubtitle}">
             </p>
             <div class="d-flex gap-3">
               <a
-                href="#contact"
+                th:href="${heroButtonLink1}"
                 class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg hover-lift"
+                th:text="${heroButtonText1}"
               >
-                Mulai Proyek
               </a>
               <a
-                href="#product"
+                th:href="${heroButtonLink2}"
                 class="btn btn-outline-light btn-lg rounded-pill px-5 hover-lift"
+                th:text="${heroButtonText2}"
               >
-                Lihat Portfolio
               </a>
             </div>
 
             <div class="mt-5 pt-4 border-top border-white-10 d-flex gap-5">
-              <div>
-                <h3 class="fw-bold mb-0">80+</h3>
-                <small class="text-white-50">Proyek Selesai</small>
-              </div>
-              <div>
-                <h3 class="fw-bold mb-0">90%</h3>
-                <small class="text-white-50">Klien Puas</small>
-              </div>
-              <div>
-                <h3 class="fw-bold mb-0">7+</h3>
-                <small class="text-white-50">Tahun Pengalaman</small>
+              <div th:each="stat : ${stats}">
+                <h3 class="fw-bold mb-0" th:text="${stat.get('value')}">80+</h3>
+                <small class="text-white-50" th:text="${stat.get('label')}">Proyek Selesai</small>
               </div>
             </div>
           </div>
@@ -163,7 +151,7 @@
               class="hero-visual glass-card p-4 rounded-4 shadow-lg rotate-animation"
             >
               <img
-                th:src="@{/logo.png}"
+                th:src="@{${heroImage}}"
                 alt="Dashboard"
                 class="img-fluid rounded-3 border border-white-10"
               />
@@ -230,19 +218,19 @@
         <div class="row align-items-center">
           <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
             <img
-              th:src="@{https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80}"
+              th:src="@{${aboutImageUrl}}"
               alt="Team working"
               class="img-fluid rounded-4 shadow-lg border border-white-10"
             />
           </div>
           <div class="col-lg-6 ps-lg-5" data-aos="fade-left">
-            <h6 class="text-primary text-uppercase letter-spacing-2 mb-3">
+            <h6 class="text-primary text-uppercase letter-spacing-2 mb-3" th:text="${aboutSubtitle}">
               Tentang Kami
             </h6>
-            <h2 class="display-6 fw-bold mb-4">
+            <h2 class="display-6 fw-bold mb-4" th:text="${aboutTitle}">
               Mitra Digital untuk Perkembangan Institusi Anda
             </h2>
-            <p class="text-white-50 mb-4">
+            <p class="text-white-50 mb-4" th:text="${aboutDescription}">
               Garapan Website bukan sekadar vendor, tapi mitra strategis. Kami
               memahami bahwa setiap baris kode yang kami tulis adalah investasi
               untuk masa depan institusi Anda. Dengan tim yang berdedikasi dan
@@ -285,76 +273,26 @@
         </div>
 
         <div class="row g-4">
-          <!-- Service 1 -->
           <div
             class="col-md-6 col-lg-4"
             data-aos="fade-up"
             data-aos-delay="100"
+            th:each="service : ${services}"
           >
             <div class="card bg-dark border-white-10 h-100 p-4 hover-card">
               <div class="card-body">
                 <div
-                  class="icon-box bg-warning-subtle text-warning rounded-circle mb-4 d-inline-flex align-items-center justify-content-center"
+                  class="icon-box"
+                  th:classappend="'bg-' + ${service.get('color')} + '-subtle text-' + ${service.get('color')}"
                   style="width: 60px; height: 60px"
                 >
-                  <i class="bi bi-palette fs-3"></i>
+                  <i class="bi" th:classappend="${service.get('icon')}">bi-palette</i>
                 </div>
-                <h4 class="card-title fw-bold mb-3 text-warning">
-                  UI/UX Design
+                <h4 class="card-title fw-bold mb-3" th:classappend="'text-' + ${service.get('color')}" th:text="${service.get('title')}">
+                  Service Title
                 </h4>
-                <p class="card-text text-white-50">
-                  Perancangan antarmuka yang estetis dan pengalaman pengguna
-                  yang intuitif untuk meningkatkan konversi.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service 2 -->
-          <div
-            class="col-md-6 col-lg-4"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="card bg-dark border-white-10 h-100 p-4 hover-card">
-              <div class="card-body">
-                <div
-                  class="icon-box bg-primary-subtle text-primary rounded-circle mb-4 d-inline-flex align-items-center justify-content-center"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="bi bi-laptop fs-3"></i>
-                </div>
-                <h4 class="card-title fw-bold mb-3 text-primary">
-                  Website Development
-                </h4>
-                <p class="card-text text-white-50">
-                  Pembuatan website company profile, toko online, hingga sistem
-                  informasi custom yang responsif dan SEO-friendly.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Service 3 -->
-          <div
-            class="col-md-6 col-lg-4"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div class="card bg-dark border-white-10 h-100 p-4 hover-card">
-              <div class="card-body">
-                <div
-                  class="icon-box bg-success-subtle text-success rounded-circle mb-4 d-inline-flex align-items-center justify-content-center"
-                  style="width: 60px; height: 60px"
-                >
-                  <i class="bi bi-phone fs-3"></i>
-                </div>
-                <h4 class="card-title fw-bold mb-3 text-success">
-                  Mobile Application
-                </h4>
-                <p class="card-text text-white-50">
-                  Pengembangan aplikasi mobile Android dan iOS menggunakan
-                  teknologi native maupun hybrid (Flutter/React Native).
+                <p class="card-text text-white-50" th:text="${service.get('description')}">
+                  Service description
                 </p>
               </div>
             </div>
@@ -384,37 +322,20 @@
         </div>
 
         <div class="row g-4">
-          <div class="col-md-6" data-aos="fade-up">
+          <div class="col-md-6" data-aos="fade-up" th:each="project, projectStat : ${portfolio}">
             <div
               class="project-card position-relative overflow-hidden rounded-4 group"
             >
               <img
-                th:src="@{/assets/fashion_web_desktop_1764339749885-BqN3-cmJ.png}"
-                alt="Fashion E-Commerce Website"
+                th:src="@{${project.get('image')}}"
+                th:alt="${project.get('alt')}"
                 class="img-fluid w-100 transition-transform"
               />
               <div
                 class="project-overlay position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-to-t from-black to-transparent"
               >
-                <h4 class="fw-bold mb-1">E-Commerce Fashion</h4>
-                <p class="text-white-50 mb-0">Web Development, UI/UX</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div
-              class="project-card position-relative overflow-hidden rounded-4 group"
-            >
-              <img
-                th:src="@{/assets/simrs_dashboard_1764371322765-WNyIQfIv.png}"
-                alt="Sistem Manajemen RS Dashboard"
-                class="img-fluid w-100 transition-transform"
-              />
-              <div
-                class="project-overlay position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-to-t from-black to-transparent"
-              >
-                <h4 class="fw-bold mb-1">Sistem Manajemen RS</h4>
-                <p class="text-white-50 mb-0">Web App, Dashboard</p>
+                <h4 class="fw-bold mb-1" th:text="${project.get('title')}">Project Title</h4>
+                <p class="text-white-50 mb-0" th:text="${project.get('description')}">Project Description</p>
               </div>
             </div>
           </div>
@@ -433,59 +354,18 @@
         </div>
 
         <div class="row g-4 justify-content-center">
-          <!-- Team 1 -->
-          <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" th:each="member : ${teamMembers}">
             <div class="team-card text-center">
               <div class="position-relative mb-3 d-inline-block">
                 <img
-                  th:src="@{/assets/ceo_developer_portrait_1764371678999-Dm3iHmHD.png}"
-                  alt="Team Member"
+                  th:src="@{${member.get('image')}}"
+                  th:alt="${member.get('name')}"
                   class="rounded-circle border border-3 border-primary p-1"
                   style="width: 150px; height: 150px; object-fit: cover"
                 />
               </div>
-              <h5 class="fw-bold mb-1">Zidane</h5>
-              <p class="text-primary small mb-0">Lead Developer</p>
-            </div>
-          </div>
-
-          <!-- Team 2 -->
-          <div
-            class="col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div class="team-card text-center">
-              <div class="position-relative mb-3 d-inline-block">
-                <img
-                  th:src="@{/assets/casual_developer_cafe_1764371863292-C9pVxd7E.png}"
-                  alt="Team Member"
-                  class="rounded-circle border border-3 border-primary p-1"
-                  style="width: 150px; height: 150px; object-fit: cover"
-                />
-              </div>
-              <h5 class="fw-bold mb-1">Ferdy</h5>
-              <p class="text-primary small mb-0">UI/UX Designer</p>
-            </div>
-          </div>
-
-          <!-- Team 3 -->
-          <div
-            class="col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="team-card text-center">
-              <div class="position-relative mb-3 d-inline-block">
-                <img
-                  th:src="@{/assets/vr_gamer_tournament_1764372063645-BGMo98kq.png}"
-                  alt="Team Member"
-                  class="rounded-circle border border-3 border-primary p-1"
-                  style="width: 150px; height: 150px; object-fit: cover"
-                />
-              </div>
-              <h5 class="fw-bold mb-1">Bintang</h5>
-              <p class="text-primary small mb-0">Backend Engineer</p>
+              <h5 class="fw-bold mb-1" th:text="${member.get('name')}">Team Member Name</h5>
+              <p class="text-primary small mb-0" th:text="${member.get('role')}">Team Member Role</p>
             </div>
           </div>
         </div>
@@ -510,48 +390,25 @@
               data-bs-ride="carousel"
             >
               <div class="carousel-inner">
-                <div class="carousel-item active text-center">
+                <div class="carousel-item" th:classappend="${testimonialStat.index} == 0 ? 'active' : ''" th:each="testimonial, testimonialStat : ${testimonials}">
                   <div class="mb-4">
                     <i class="bi bi-quote fs-1 text-primary opacity-50"></i>
                   </div>
-                  <p class="fs-4 fst-italic mb-4">
-                    "Garapan Website sangat profesional. Website toko online
-                    kami jadi lebih cepat dan pengunjung jadi meningkat drastis.
-                    Desainnya juga sangat modern!"
+                  <p class="fs-4 fst-italic mb-4" th:text="'&quot;' + ${testimonial.get('text')} + '&quot;'">
+                    Testimonial text
                   </p>
                   <img
-                    th:src="@{/assets/petshop_cashier_owner_1764372376236-DFY-HlTK.png}"
-                    alt="Client"
-                    class="rounded-circle mb-3"
-                    style="width: 60px"
-                  />
-                  <h5 class="fw-bold mb-1">Putra</h5>
-                  <small
-                    class="text-white-50 d-block"
-                    style="margin-top: -0.5rem"
-                    >Ternak Cuan</small
-                  >
-                </div>
-                <div class="carousel-item text-center">
-                  <div class="mb-4">
-                    <i class="bi bi-quote fs-1 text-primary opacity-50"></i>
-                  </div>
-                  <p class="fs-4 fst-italic mb-4">
-                    "Tim yang sangat responsif dan solutif. Meski warung kami
-                    kecil, tetapi tetap dilayani dengan profesional. Sangat
-                    direkomendasikan!"
-                  </p>
-                  <img
-                    th:src="@{/assets/bakery_owner_serving_1764402737-DlbgLZrx.png}"
-                    alt="Client"
+                    th:src="@{${testimonial.get('image')}}"
+                    th:alt="${testimonial.get('author')}"
                     class="rounded-circle mb-3"
                     style="width: 60px; height: 60px; object-fit: cover"
                   />
-                  <h5 class="fw-bold mb-1">Dwi</h5>
+                  <h5 class="fw-bold mb-1" th:text="${testimonial.get('author')}">Author Name</h5>
                   <small
                     class="text-white-50 d-block"
                     style="margin-top: -0.5rem"
-                    >Warung Janda</small
+                    th:text="${testimonial.get('business')}"
+                    >Business Name</small
                   >
                 </div>
               </div>
@@ -602,73 +459,24 @@
               id="faqAccordion"
               data-aos="fade-up"
             >
-              <div class="accordion-item bg-transparent border-white-10">
+              <div class="accordion-item bg-transparent border-white-10" th:each="faq, faqStat : ${faqs}">
                 <h2 class="accordion-header">
                   <button
                     class="accordion-button collapsed bg-transparent text-white shadow-none"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#faq1"
+                    th:data-bs-target="'#faq' + ${faqStat.index}"
                   >
-                    Berapa lama waktu pengerjaan website?
+                    <span th:text="${faq.get('question')}">Question</span>
                   </button>
                 </h2>
                 <div
-                  id="faq1"
+                  th:id="'faq' + ${faqStat.index}"
                   class="accordion-collapse collapse"
                   data-bs-parent="#faqAccordion"
                 >
-                  <div class="accordion-body text-white-50">
-                    Waktu pengerjaan bervariasi tergantung kompleksitas. Untuk
-                    landing page sederhana sekitar 7-14 hari, sedangkan untuk
-                    sistem yang kompleks bisa memakan waktu 1-3 bulan.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item bg-transparent border-white-10">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed bg-transparent text-white shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq2"
-                  >
-                    Apakah ada garansi setelah website jadi?
-                  </button>
-                </h2>
-                <div
-                  id="faq2"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body text-white-50">
-                    Ya, kami memberikan garansi maintenance gratis selama 3
-                    bulan pertama untuk memastikan website berjalan lancar tanpa
-                    bug.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item bg-transparent border-white-10">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed bg-transparent text-white shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#faq3"
-                  >
-                    Apakah hosting dan domain disediakan?
-                  </button>
-                </h2>
-                <div
-                  id="faq3"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body text-white-50">
-                    Untuk paket tertentu, hosting dan domain sudah termasuk
-                    untuk tahun pertama. Namun untuk sistem besar, kami
-                    menyarankan menggunakan server sendiri yang kami bantu
-                    setup.
+                  <div class="accordion-body text-white-50" th:text="${faq.get('answer')}">
+                    Answer
                   </div>
                 </div>
               </div>
@@ -692,7 +500,7 @@
             >
               <i class="bi bi-globe text-primary fs-3"></i>
               <div class="d-flex flex-column lh-1">
-                <span class="fw-bolder text-uppercase fs-5">GARAPAN</span>
+                <span class="fw-bolder text-uppercase fs-5" th:text="${siteName}">GARAPAN</span>
                 <span
                   class="fw-light text-white-50"
                   style="font-size: 0.7rem; letter-spacing: 2px"
@@ -746,15 +554,15 @@
             <ul class="list-unstyled text-white-50">
               <li class="mb-1 d-flex gap-2">
                 <i class="bi bi-geo-alt text-danger"></i>
-                <span>Jl. Hayam Wuruk No. 78 Jember 68135</span>
+                <span th:text="${contactInfo.get('address')}">Jl. Hayam Wuruk No. 78 Jember 68135</span>
               </li>
               <li class="mb-1 d-flex gap-2">
                 <i class="bi bi-envelope text-warning"></i>
-                <span>hendra@usa.com</span>
+                <span th:text="${contactInfo.get('email')}">hendra@usa.com</span>
               </li>
               <li class="mb-1 d-flex gap-2">
                 <i class="bi bi-whatsapp text-success"></i>
-                <span>+62 851 9814 1551</span>
+                <span th:text="${contactInfo.get('phone')}">+62 851 9814 1551</span>
               </li>
             </ul>
           </div>
