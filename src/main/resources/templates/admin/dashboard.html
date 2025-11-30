@@ -292,13 +292,12 @@
             </div>
             <div class="col-md-12">
               <label class="form-label">Logo Website</label>
-              <div class="d-flex flex-column flex-md-row align-items-start gap-4">
+              <div class="d-flex flex-column flex-md-row align-items-center gap-4">
                 <div class="d-flex flex-column gap-3 flex-fill">
                   <div class="d-flex flex-column flex-md-row align-items-center gap-4">
-                    <div class="border rounded p-3 bg-dark bg-opacity-25" style="min-height: 120px; flex: 1;">
-                      <label class="form-label mb-2">Pilih Logo Baru</label>
+                    <div class="border rounded p-3 bg-dark bg-opacity-25 d-flex flex-column justify-content-center" style="min-height: 120px; flex: 1;">
                       <input type="file" class="form-control" name="logoFile" accept="image/*" onchange="previewLogo(this)" />
-                      <div class="form-text text-white-50">Format: PNG, JPG, JPEG (Maks. 2MB)</div>
+                      <div class="form-text text-white-50 mt-2">Format: PNG, JPG, JPEG (Maks. 2MB)</div>
                     </div>
                     <div class="d-flex flex-column align-items-center justify-content-center">
                       <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 120px; position: relative;">
@@ -306,6 +305,11 @@
                         <span class="preview-text position-absolute text-white-50 small d-flex align-items-center justify-content-center" style="top: 0; left: 0; right: 0; bottom: 0;">Preview</span>
                       </div>
                     </div>
+                  </div>
+                  <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                      <i class="bi bi-save me-2"></i>Simpan Perubahan
+                    </button>
                   </div>
                 </div>
               </div>
