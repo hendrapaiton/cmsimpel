@@ -229,58 +229,40 @@
             <i class="bi bi-house-door text-primary"></i>
             <h4 class="fw-bold mb-0">Hero Section</h4>
           </div>
-          <div class="row g-3">
-            <div class="col-md-12">
-              <label class="form-label">Hero Title</label>
-              <input
-                type="text"
-                class="admin-form-control"
-                th:field="*{heroTitle}"
-                placeholder="Main title with HTML allowed"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="form-label">Hero Subtitle</label>
-              <textarea class="admin-form-control" th:field="*{heroSubtitle}" rows="3" placeholder="Subtitle text"></textarea>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Button 1 Text</label>
-              <input type="text" class="admin-form-control" th:field="*{heroButtonText1}" placeholder="Button text" />
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Button 1 Link</label>
-              <input type="text" class="admin-form-control" th:field="*{heroButtonLink1}" placeholder="#section or URL" />
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Hero Image Path</label>
-              <input type="text" class="admin-form-control" th:field="*{heroImage}" placeholder="/path/to/image.png" />
-            </div>
-            <!-- Stats Section -->
-            <h4 class="mt-4 mb-3">Stats Section</h4>
-            <div class="stats-container">
-              <div th:each="stat, statStat : *{stats}" class="row mb-3 g-3">
-                <div class="col-md-4">
-                  <input type="text" class="admin-form-control" th:field="*{stats[__${statStat.index}__].value}" placeholder="Stat value (e.g. 80+)">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="admin-form-control" th:field="*{stats[__${statStat.index}__].label}" placeholder="Stat label">
-                </div>
-                <div class="col-md-2 d-flex align-items-center">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeStat(this)">Hapus</button>
-                </div>
+          <form id="heroForm">
+            <div class="row g-3">
+              <div class="col-md-12">
+                <label class="form-label">Judul Utama</label>
+                <input
+                  type="text"
+                  class="admin-form-control"
+                  th:field="*{heroTitle}"
+                  placeholder="Wujudkan Ide Digital Menjadi Maha Karya"
+                />
               </div>
-              <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-sm btn-outline-primary rounded-pill" onclick="addStat()">
-                  <i class="bi bi-plus-circle me-1"></i>Tambah Stat
+              <div class="col-md-12">
+                <label class="form-label">Deskripsi</label>
+                <textarea class="admin-form-control" th:field="*{heroSubtitle}" rows="3" placeholder="Kami membantu mewujudkan ide nyata Anda menjadi sistem informasi mutakhir dengan teknologi AI terbaru."></textarea>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Proyek Selesai</label>
+                <input type="text" class="admin-form-control" th:field="*{stats[0].value}" placeholder="80+" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Klien Puas</label>
+                <input type="text" class="admin-form-control" th:field="*{stats[1].value}" placeholder="90%" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Tahun Pengalaman</label>
+                <input type="text" class="admin-form-control" th:field="*{stats[2].value}" placeholder="7+" />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                  <i class="bi bi-save me-2"></i>Simpan Perubahan
                 </button>
               </div>
             </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary rounded-pill px-4">
-                <i class="bi bi-save me-2"></i>Simpan Perubahan
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
 
         <div id="services-section" class="form-card">
@@ -295,37 +277,37 @@
               <i class="bi bi-plus-circle me-1"></i>Tambah Layanan
             </button>
           </div>
-          <div class="services-container">
-            <div th:each="service, serviceStat : *{services}" class="mb-4 pb-4 border-bottom border-white-10">
+          <form id="servicesForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
               <h6 class="text-warning mb-3">
-                <i class="bi bi-palette me-2"></i> <span th:text="${service.title}">Service Title</span>
+                <i class="bi bi-palette me-2"></i>UI/UX Design
               </h6>
               <div class="row g-3">
-                <div class="col-md-3">
-                  <label class="form-label">Icon Class</label>
-                  <input type="text" class="admin-form-control" th:field="*{services[__${serviceStat.index}__].icon}" placeholder="bi-icon-class" />
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label">Service Title</label>
-                  <input type="text" class="admin-form-control" th:field="*{services[__${serviceStat.index}__].title}" placeholder="Service title" />
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label">Color</label>
-                  <select class="admin-form-control admin-form-select" th:field="*{services[__${serviceStat.index}__].color}">
-                    <option value="warning">Warning</option>
-                    <option value="primary">Primary</option>
-                    <option value="success">Success</option>
-                    <option value="danger">Danger</option>
-                    <option value="info">Info</option>
-                  </select>
-                </div>
-                <div class="col-md-3">
-                  <label class="form-label">Remove Service</label>
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill w-100" onclick="removeService(this)">Hapus</button>
-                </div>
                 <div class="col-md-12">
-                  <label class="form-label">Description</label>
-                  <textarea class="admin-form-control" th:field="*{services[__${serviceStat.index}__].description}" rows="2" placeholder="Service description"></textarea>
+                  <label class="form-label">Deskripsi</label>
+                  <textarea class="admin-form-control" th:field="*{services[0].description}" rows="2" placeholder="Perancangan antarmuka yang estetis dan pengalaman pengguna yang intuitif untuk meningkatkan konversi."></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="text-primary mb-3">
+                <i class="bi bi-laptop me-2"></i>Website Development
+              </h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Deskripsi</label>
+                  <textarea class="admin-form-control" th:field="*{services[1].description}" rows="2" placeholder="Pembuatan website company profile, toko online, hingga sistem informasi custom yang responsif dan SEO-friendly."></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h6 class="text-success mb-3">
+                <i class="bi bi-phone me-2"></i>Mobile Application
+              </h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Deskripsi</label>
+                  <textarea class="admin-form-control" th:field="*{services[2].description}" rows="2" placeholder="Pengembangan aplikasi mobile Android dan iOS menggunakan teknologi native maupun hybrid (Flutter/React Native)."></textarea>
                 </div>
               </div>
             </div>
@@ -334,7 +316,7 @@
                 <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div id="portfolio-section" class="form-card">
@@ -349,26 +331,26 @@
               <i class="bi bi-plus-circle me-1"></i>Tambah Proyek
             </button>
           </div>
-          <div class="portfolio-container">
-            <div th:each="project, projectStat : *{portfolio}" class="mb-4 pb-4 border-bottom border-white-10">
-              <h6 class="mb-3">Proyek <span th:text="${projectStat.index + 1}">1</span></h6>
+          <form id="portfolioForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">Proyek 1</h6>
               <div class="row g-3">
                 <div class="col-md-6">
                   <label class="form-label">Nama Proyek</label>
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{portfolio[__${projectStat.index}__].title}"
-                    placeholder="Nama proyek"
+                    th:field="*{portfolio[0].title}"
+                    placeholder="E-Commerce Fashion"
                   />
                 </div>
                 <div class="col-md-6">
-                  <label class="form-label">Deskripsi</label>
+                  <label class="form-label">Kategori</label>
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{portfolio[__${projectStat.index}__].description}"
-                    placeholder="Deskripsi proyek"
+                    th:field="*{portfolio[0].description}"
+                    placeholder="Web Development, UI/UX"
                   />
                 </div>
                 <div class="col-md-12">
@@ -376,14 +358,41 @@
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{portfolio[__${projectStat.index}__].image}"
-                    placeholder="/path/to/image.png"
+                    th:field="*{portfolio[0].image}"
+                    placeholder="src\img\fashion_web_desktop_1764339749885.png"
                   />
                 </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removePortfolio(this)">
-                    <i class="bi bi-trash me-1"></i>Hapus
-                  </button>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h6 class="mb-3">Proyek 2</h6>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nama Proyek</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{portfolio[1].title}"
+                    placeholder="Sistem Manajemen RS"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Kategori</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{portfolio[1].description}"
+                    placeholder="Web App, Dashboard"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">URL Gambar</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{portfolio[1].image}"
+                    placeholder="src\img\simrs_dashboard_1764371322765.png"
+                  />
                 </div>
               </div>
             </div>
@@ -392,7 +401,7 @@
                 <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div id="team-section" class="form-card">
@@ -407,21 +416,21 @@
               <i class="bi bi-plus-circle me-1"></i>Tambah Anggota
             </button>
           </div>
-          <div class="team-container">
-            <div th:each="member, memberStat : *{team}" class="mb-4 pb-4 border-bottom border-white-10">
-              <h6 class="mb-3">Anggota Tim <span th:text="${memberStat.index + 1}">1</span></h6>
+          <form id="teamForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">Anggota Tim 1</h6>
               <div class="row g-3">
                 <div class="col-md-4">
                   <label class="form-label">Nama</label>
-                  <input type="text" class="admin-form-control" th:field="*{team[__${memberStat.index}__].name}" placeholder="Nama anggota tim" />
+                  <input type="text" class="admin-form-control" th:field="*{team[0].name}" placeholder="Zidane" />
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Posisi</label>
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{team[__${memberStat.index}__].role}"
-                    placeholder="Posisi tim"
+                    th:field="*{team[0].role}"
+                    placeholder="Lead Developer"
                   />
                 </div>
                 <div class="col-md-4">
@@ -429,14 +438,63 @@
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{team[__${memberStat.index}__].image}"
-                    placeholder="/path/to/image.png"
+                    th:field="*{team[0].image}"
+                    placeholder="src\img\ceo_developer_portrait_1764371678999.png"
                   />
                 </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeTeam(this)">
-                    <i class="bi bi-trash me-1"></i>Hapus
-                  </button>
+              </div>
+            </div>
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">Anggota Tim 2</h6>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label">Nama</label>
+                  <input type="text" class="admin-form-control" th:field="*{team[1].name}" placeholder="Ferdy" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Posisi</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{team[1].role}"
+                    placeholder="UI/UX Designer"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">URL Foto</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{team[1].image}"
+                    placeholder="src\img\casual_developer_cafe_1764371863292.png"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h6 class="mb-3">Anggota Tim 3</h6>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label">Nama</label>
+                  <input type="text" class="admin-form-control" th:field="*{team[2].name}" placeholder="Bintang" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Posisi</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{team[2].role}"
+                    placeholder="Backend Engineer"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">URL Foto</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{team[2].image}"
+                    placeholder="src\img\vr_gamer_tournament_1764372063645.png"
+                  />
                 </div>
               </div>
             </div>
@@ -445,7 +503,7 @@
                 <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div id="testimonial-section" class="form-card">
@@ -460,35 +518,56 @@
               <i class="bi bi-plus-circle me-1"></i>Tambah Testimoni
             </button>
           </div>
-          <div class="testimonials-container">
-            <div th:each="testimonial, testimonialStat : *{testimonials}" class="mb-4 pb-4 border-bottom border-white-10">
-              <h6 class="mb-3">Testimoni <span th:text="${testimonialStat.index + 1}">1</span></h6>
+          <form id="testimonialForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">Testimoni 1</h6>
               <div class="row g-3">
                 <div class="col-md-4">
                   <label class="form-label">Nama</label>
-                  <input type="text" class="admin-form-control" th:field="*{testimonials[__${testimonialStat.index}__].author}" placeholder="Nama pengguna" />
+                  <input type="text" class="admin-form-control" th:field="*{testimonials[0].author}" placeholder="Putra" />
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Perusahaan</label>
-                  <input type="text" class="admin-form-control" th:field="*{testimonials[__${testimonialStat.index}__].business}" placeholder="Nama perusahaan" />
+                  <input type="text" class="admin-form-control" th:field="*{testimonials[0].business}" placeholder="Ternak Cuan" />
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">URL Foto</label>
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{testimonials[__${testimonialStat.index}__].image}"
-                    placeholder="/path/to/image.png"
+                    th:field="*{testimonials[0].image}"
+                    placeholder="src\img\petshop_cashier_owner_1764372376236.png"
                   />
                 </div>
                 <div class="col-md-12">
                   <label class="form-label">Testimoni</label>
-                  <textarea class="admin-form-control" th:field="*{testimonials[__${testimonialStat.index}__].text}" rows="3" placeholder="Tulis testimoni di sini..."></textarea>
+                  <textarea class="admin-form-control" th:field="*{testimonials[0].text}" rows="3" placeholder="Garapan Website sangat profesional. Website toko online kami jadi lebih cepat dan pengunjung jadi meningkat drastis. Desainnya juga sangat modern!"></textarea>
                 </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeTestimonial(this)">
-                    <i class="bi bi-trash me-1"></i>Hapus
-                  </button>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h6 class="mb-3">Testimoni 2</h6>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label">Nama</label>
+                  <input type="text" class="admin-form-control" th:field="*{testimonials[1].author}" placeholder="Dwi" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Perusahaan</label>
+                  <input type="text" class="admin-form-control" th:field="*{testimonials[1].business}" placeholder="Warung Janda" />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">URL Foto</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{testimonials[1].image}"
+                    placeholder="src\img\bakery_owner_serving_1764402737.png"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Testimoni</label>
+                  <textarea class="admin-form-control" th:field="*{testimonials[1].text}" rows="3" placeholder="Tim yang sangat responsif dan solutif. Meski warung kami kecil, tetapi tetap dilayani dengan profesional. Sangat direkomendasikan!"></textarea>
                 </div>
               </div>
             </div>
@@ -497,7 +576,7 @@
                 <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         <div id="faq-section" class="form-card">
@@ -512,27 +591,58 @@
               <i class="bi bi-plus-circle me-1"></i>Tambah FAQ
             </button>
           </div>
-          <div class="faq-container">
-            <div th:each="faq, faqStat : *{faqs}" class="mb-4 pb-4 border-bottom border-white-10">
-              <h6 class="mb-3">FAQ <span th:text="${faqStat.index + 1}">1</span></h6>
+          <form id="faqForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">FAQ 1</h6>
               <div class="row g-3">
                 <div class="col-md-12">
                   <label class="form-label">Pertanyaan</label>
                   <input
                     type="text"
                     class="admin-form-control"
-                    th:field="*{faqs[__${faqStat.index}__].question}"
-                    placeholder="Pertanyaan"
+                    th:field="*{faqs[0].question}"
+                    placeholder="Berapa lama waktu pengerjaan website?"
                   />
                 </div>
                 <div class="col-md-12">
                   <label class="form-label">Jawaban</label>
-                  <textarea class="admin-form-control" th:field="*{faqs[__${faqStat.index}__].answer}" rows="3" placeholder="Jawaban"></textarea>
+                  <textarea class="admin-form-control" th:field="*{faqs[0].answer}" rows="3" placeholder="Waktu pengerjaan bervariasi tergantung kompleksitas. Untuk landing page sederhana sekitar 7-14 hari, sedangkan untuk sistem yang kompleks bisa memakan waktu 1-3 bulan."></textarea>
                 </div>
-                <div class="col-md-12 d-flex justify-content-end">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeFaq(this)">
-                    <i class="bi bi-trash me-1"></i>Hapus
-                  </button>
+              </div>
+            </div>
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="mb-3">FAQ 2</h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Pertanyaan</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{faqs[1].question}"
+                    placeholder="Apakah ada garansi setelah website jadi?"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Jawaban</label>
+                  <textarea class="admin-form-control" th:field="*{faqs[1].answer}" rows="3" placeholder="Ya, kami memberikan garansi maintenance gratis selama 3 bulan pertama untuk memastikan website berjalan lancar tanpa bug."></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h6 class="mb-3">FAQ 3</h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Pertanyaan</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{faqs[2].question}"
+                    placeholder="Apakah harga sudah termasuk hosting dan domain?"
+                  />
+                </div>
+                <div class="col-md-12">
+                  <label class="form-label">Jawaban</label>
+                  <textarea class="admin-form-control" th:field="*{faqs[2].answer}" rows="3" placeholder="Untuk paket tertentu, hosting dan domain sudah termasuk untuk tahun pertama. Namun untuk sistem besar, kami menyarankan menggunakan server sendiri yang kami bantu setup."></textarea>
                 </div>
               </div>
             </div>
@@ -541,157 +651,158 @@
                 <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-          </div>
+          </form>
         </div>
         <div id="footer-section" class="form-card">
           <div class="section-header">
             <i class="bi bi-layout-text-window-reverse text-primary"></i>
             <h4 class="fw-bold mb-0">Footer</h4>
           </div>
-
-          <div class="mb-4 pb-4 border-bottom border-white-10">
-            <h6 class="text-primary mb-3">
-              <i class="bi bi-building me-2"></i>Informasi Perusahaan
-            </h6>
-            <div class="row g-3">
-              <div class="col-md-12">
-                <label class="form-label">Deskripsi Perusahaan</label>
-                <textarea class="admin-form-control" th:field="*{aboutDescription}" rows="3" placeholder="Deskripsi perusahaan..."></textarea>
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-4 pb-4 border-bottom border-white-10">
-            <h6 class="text-success mb-3">
-              <i class="bi bi-telephone me-2"></i>Informasi Kontak
-            </h6>
-            <div class="row g-3">
-              <div class="col-md-12">
-                <label class="form-label">Alamat</label>
-                <input
-                  type="text"
-                  class="admin-form-control"
-                  th:field="*{contactAddress}"
-                  placeholder="Alamat lengkap"
-                />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input
-                  type="text"
-                  class="admin-form-control"
-                  th:field="*{contactEmail}"
-                  placeholder="email@domain.com"
-                />
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">WhatsApp</label>
-                <input
-                  type="text"
-                  class="admin-form-control"
-                  th:field="*{contactPhone}"
-                  placeholder="+62 812 3456 7890"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-4 pb-4 border-bottom border-white-10">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="text-warning mb-0">
-                <i class="bi bi-bullseye me-2"></i>Fokus Kami
+          <form id="footerForm">
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="text-primary mb-3">
+                <i class="bi bi-building me-2"></i>Informasi Perusahaan
               </h6>
-              <button
-                type="button"
-                class="btn btn-sm btn-outline-warning rounded-pill"
-                onclick="addFokus()"
-              >
-                <i class="bi bi-plus-circle me-1"></i>Tambah Fokus
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Deskripsi Perusahaan</label>
+                  <textarea class="admin-form-control" th:field="*{aboutDescription}" rows="3" placeholder="Mitra digital terpercaya untuk transformasi presentasi informasi institusi Anda. Kami membangun solusi web yang inovatif dan berorientasi hasil dengan teknologi AI terbaru."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <h6 class="text-success mb-3">
+                <i class="bi bi-telephone me-2"></i>Informasi Kontak
+              </h6>
+              <div class="row g-3">
+                <div class="col-md-12">
+                  <label class="form-label">Alamat</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{contactAddress}"
+                    placeholder="Jl. Hayam Wuruk No. 78 Jember 68135"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{contactEmail}"
+                    placeholder="hendra@usa.com"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">WhatsApp</label>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{contactPhone}"
+                    placeholder="+62 851 9814 1551"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4 pb-4 border-bottom border-white-10">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="text-warning mb-0">
+                  <i class="bi bi-bullseye me-2"></i>Fokus Kami
+                </h6>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-warning rounded-pill"
+                  onclick="addFokus()"
+                >
+                  <i class="bi bi-plus-circle me-1"></i>Tambah Fokus
+                </button>
+              </div>
+              <div id="fokusContainer">
+                <div class="mb-3 d-flex gap-2 align-items-center">
+                  <input type="text" class="admin-form-control" value="Healthcare" />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger rounded-pill"
+                    onclick="this.closest('.mb-3').remove()"
+                    style="min-width: 80px"
+                  >
+                    <i class="bi bi-trash me-1"></i>Hapus
+                  </button>
+                </div>
+                <div class="mb-3 d-flex gap-2 align-items-center">
+                  <input type="text" class="admin-form-control" value="Education" />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger rounded-pill"
+                    onclick="this.closest('.mb-3').remove()"
+                    style="min-width: 80px"
+                  >
+                    <i class="bi bi-trash me-1"></i>Hapus
+                  </button>
+                </div>
+                <div class="mb-3 d-flex gap-2 align-items-center">
+                  <input type="text" class="admin-form-control" value="Business" />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger rounded-pill"
+                    onclick="this.closest('.mb-3').remove()"
+                    style="min-width: 80px"
+                  >
+                    <i class="bi bi-trash me-1"></i>Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="text-info mb-0">
+                  <i class="bi bi-info-circle me-2"></i>Tentang Kami
+                </h6>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-info rounded-pill"
+                  onclick="addTentang()"
+                >
+                  <i class="bi bi-plus-circle me-1"></i>Tambah Link
+                </button>
+              </div>
+              <div id="tentangContainer">
+                <div class="mb-3 d-flex gap-2 align-items-center">
+                  <input type="text" class="admin-form-control" value="Profil Usaha" />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger rounded-pill"
+                    onclick="this.closest('.mb-3').remove()"
+                    style="min-width: 80px"
+                  >
+                    <i class="bi bi-trash me-1"></i>Hapus
+                  </button>
+                </div>
+                <div class="mb-3 d-flex gap-2 align-items-center">
+                  <input type="text" class="admin-form-control" value="Kabar Berita" />
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger rounded-pill"
+                    onclick="this.closest('.mb-3').remove()"
+                    style="min-width: 80px"
+                  >
+                    <i class="bi bi-trash me-1"></i>Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary rounded-pill px-4">
+                <i class="bi bi-save me-2"></i>Simpan Perubahan
               </button>
             </div>
-            <div id="fokusContainer">
-              <div class="mb-3 d-flex gap-2 align-items-center">
-                <input type="text" class="admin-form-control" value="Healthcare" />
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger rounded-pill"
-                  onclick="this.closest('.mb-3').remove()"
-                  style="min-width: 80px"
-                >
-                  <i class="bi bi-trash me-1"></i>Hapus
-                </button>
-              </div>
-              <div class="mb-3 d-flex gap-2 align-items-center">
-                <input type="text" class="admin-form-control" value="Education" />
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger rounded-pill"
-                  onclick="this.closest('.mb-3').remove()"
-                  style="min-width: 80px"
-                >
-                  <i class="bi bi-trash me-1"></i>Hapus
-                </button>
-              </div>
-              <div class="mb-3 d-flex gap-2 align-items-center">
-                <input type="text" class="admin-form-control" value="Business" />
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger rounded-pill"
-                  onclick="this.closest('.mb-3').remove()"
-                  style="min-width: 80px"
-                >
-                  <i class="bi bi-trash me-1"></i>Hapus
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="text-info mb-0">
-                <i class="bi bi-info-circle me-2"></i>Tentang Kami
-              </h6>
-              <button
-                type="button"
-                class="btn btn-sm btn-outline-info rounded-pill"
-                onclick="addTentang()"
-              >
-                <i class="bi bi-plus-circle me-1"></i>Tambah Link
-              </button>
-            </div>
-            <div id="tentangContainer">
-              <div class="mb-3 d-flex gap-2 align-items-center">
-                <input type="text" class="admin-form-control" value="Profil Usaha" />
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger rounded-pill"
-                  onclick="this.closest('.mb-3').remove()"
-                  style="min-width: 80px"
-                >
-                  <i class="bi bi-trash me-1"></i>Hapus
-                </button>
-              </div>
-              <div class="mb-3 d-flex gap-2 align-items-center">
-                <input type="text" class="admin-form-control" value="Kabar Berita" />
-                <button
-                  type="button"
-                  class="btn btn-sm btn-outline-danger rounded-pill"
-                  onclick="this.closest('.mb-3').remove()"
-                  style="min-width: 80px"
-                >
-                  <i class="bi bi-trash me-1"></i>Hapus
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary rounded-pill px-4">
-              <i class="bi bi-save me-2"></i>Simpan Perubahan
-            </button>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
@@ -733,238 +844,212 @@
       }, observerOptions);
       sections.forEach((section) => observer.observe(section));
 
-      // Add Stat
+      // Handle form submissions to show success messages
+      document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+          form.addEventListener('submit', function(e) {
+            // This will be handled by the server-side controller
+            // The success message will be shown through Thymeleaf parameter
+          });
+        });
+      });
+
+      // For Hero section stats - since we're using fixed indices, we'll add new stats to the end
       function addStat() {
-          const container = document.querySelector('.stats-container');
-          const index = container.querySelectorAll('.row.mb-3').length - 1; // -1 for the button row
+        const container = document.querySelector('.stats-container');
+        const statCount = container.querySelectorAll('.row.mb-3').length;
+        const newStatIndex = statCount > 0 ? statCount : 3; // Start from index 3 if we already have the initial ones
 
-          const newRow = document.createElement('div');
-          newRow.className = 'row mb-3 g-3';
-          newRow.innerHTML = `
-              <div class="col-md-4">
-                  <input type="text" class="admin-form-control" name="stats[` + index + `].value" placeholder="Stat value (e.g. 80+)">
-              </div>
-              <div class="col-md-6">
-                  <input type="text" class="admin-form-control" name="stats[` + index + `].label" placeholder="Stat label">
-              </div>
-              <div class="col-md-2 d-flex align-items-center">
-                  <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeStat(this)">Hapus</button>
-              </div>
-          `;
+        const newRow = document.createElement('div');
+        newRow.className = 'row mb-3 g-3';
+        newRow.innerHTML = `
+          <div class="col-md-4">
+            <label class="form-label">Stat Value ` + (newStatIndex + 1) + `</label>
+            <input type="text" class="admin-form-control" name="stats[` + newStatIndex + `].value" placeholder="e.g. 80+">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Stat Label ` + (newStatIndex + 1) + `</label>
+            <input type="text" class="admin-form-control" name="stats[` + newStatIndex + `].label" placeholder="e.g. Proyek Selesai">
+          </div>
+          <div class="col-md-2 d-flex align-items-center">
+            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeStat(this)">Hapus</button>
+          </div>
+        `;
 
-          // Insert before the button
-          const buttonRow = container.querySelector('.d-flex.justify-content-end');
-          container.insertBefore(newRow, buttonRow);
+        const buttonRow = container.querySelector('.d-flex.justify-content-end');
+        container.insertBefore(newRow, buttonRow);
       }
 
       function removeStat(button) {
-          button.closest('.row').remove();
+        button.closest('.row').remove();
       }
 
-      // Add Service
+      // For Services - add new service
       function addService() {
-          const container = document.querySelector('.services-container');
-          const index = container.querySelectorAll('.mb-4.pb-4').length - 1; // -1 for the button row
+        const container = document.querySelector('#servicesForm');
+        const serviceCount = container.querySelectorAll('.mb-4.pb-4.border-bottom').length;
+        const newServiceIndex = serviceCount;
 
-          const newCard = document.createElement('div');
-          newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
-          newCard.innerHTML = `
-              <h6 class="text-warning mb-3">
-                <i class="bi bi-palette me-2"></i> Layanan Baru
-              </h6>
-              <div class="row g-3">
-                  <div class="col-md-3">
-                      <label class="form-label">Icon Class</label>
-                      <input type="text" class="admin-form-control" name="services[` + index + `].icon" placeholder="bi-icon-class">
-                  </div>
-                  <div class="col-md-3">
-                      <label class="form-label">Service Title</label>
-                      <input type="text" class="admin-form-control" name="services[` + index + `].title" placeholder="Service title">
-                  </div>
-                  <div class="col-md-3">
-                      <label class="form-label">Color</label>
-                      <select class="admin-form-control admin-form-select" name="services[` + index + `].color">
-                          <option value="warning">Warning</option>
-                          <option value="primary">Primary</option>
-                          <option value="success">Success</option>
-                          <option value="danger">Danger</option>
-                          <option value="info">Info</option>
-                      </select>
-                  </div>
-                  <div class="col-md-3">
-                      <label class="form-label">Remove Service</label>
-                      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill w-100" onclick="removeService(this)">Hapus</button>
-                  </div>
-                  <div class="col-md-12">
-                      <label class="form-label">Description</label>
-                      <textarea class="admin-form-control" name="services[` + index + `].description" rows="2" placeholder="Service description"></textarea>
-                  </div>
-              </div>
-          `;
+        const newCard = document.createElement('div');
+        newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
+        newCard.innerHTML = `
+          <h6 class="mb-3">Layanan ` + (newServiceIndex + 1) + `</h6>
+          <div class="row g-3">
+            <div class="col-md-12">
+              <label class="form-label">Deskripsi</label>
+              <textarea class="admin-form-control" name="services[` + newServiceIndex + `].description" rows="2" placeholder="Deskripsi layanan..."></textarea>
+            </div>
+          </div>
+        `;
 
-          // Insert before the save button
-          const saveBtn = container.querySelector('.col-12');
-          container.insertBefore(newCard, saveBtn);
+        // Insert before the save button
+        const saveBtn = container.querySelector('.col-12');
+        container.insertBefore(newCard, saveBtn);
       }
 
       function removeService(button) {
-          button.closest('.mb-4').remove();
+        button.closest('.mb-4.pb-4.border-bottom').remove();
       }
 
-      // Add Portfolio
+      // For Portfolio - add new portfolio item
       function addPortfolioItem() {
-          const container = document.querySelector('.portfolio-container');
-          const index = container.querySelectorAll('.mb-4.pb-4').length - 1; // -1 for the button
+        const container = document.querySelector('#portfolioForm');
+        const portfolioCount = container.querySelectorAll('.mb-4.pb-4.border-bottom').length;
+        const newPortfolioIndex = portfolioCount;
 
-          const newCard = document.createElement('div');
-          newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
-          newCard.innerHTML = `
-              <h6 class="mb-3">Proyek ` + (index + 1) + `</h6>
-              <div class="row g-3">
-                  <div class="col-md-6">
-                      <label class="form-label">Nama Proyek</label>
-                      <input type="text" class="admin-form-control" name="portfolio[` + index + `].title" placeholder="Nama proyek">
-                  </div>
-                  <div class="col-md-6">
-                      <label class="form-label">Deskripsi</label>
-                      <input type="text" class="admin-form-control" name="portfolio[` + index + `].description" placeholder="Deskripsi proyek">
-                  </div>
-                  <div class="col-md-12">
-                      <label class="form-label">URL Gambar</label>
-                      <input type="text" class="admin-form-control" name="portfolio[` + index + `].image" placeholder="/path/to/image.png">
-                  </div>
-                  <div class="col-md-12 d-flex justify-content-end">
-                      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removePortfolio(this)">
-                        <i class="bi bi-trash me-1"></i>Hapus
-                      </button>
-                  </div>
-              </div>
-          `;
+        const newCard = document.createElement('div');
+        newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
+        newCard.innerHTML = `
+          <h6 class="mb-3">Proyek ` + (newPortfolioIndex + 2) + `</h6> <!-- +2 because we already have 2 -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Nama Proyek</label>
+              <input type="text" class="admin-form-control" name="portfolio[` + newPortfolioIndex + `].title" placeholder="Nama proyek">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Kategori</label>
+              <input type="text" class="admin-form-control" name="portfolio[` + newPortfolioIndex + `].description" placeholder="Kategori proyek">
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">URL Gambar</label>
+              <input type="text" class="admin-form-control" name="portfolio[` + newPortfolioIndex + `].image" placeholder="/path/to/image.png">
+            </div>
+          </div>
+        `;
 
-          // Insert before the save button
-          const saveBtn = container.querySelector('.col-12');
-          container.insertBefore(newCard, saveBtn);
+        // Insert before the save button
+        const saveBtn = container.querySelector('.col-12');
+        container.insertBefore(newCard, saveBtn);
       }
 
       function removePortfolio(button) {
-          button.closest('.mb-4').remove();
+        button.closest('.mb-4.pb-4.border-bottom').remove();
       }
 
-      // Add Team
+      // For Team - add new team member
       function addTeamMember() {
-          const container = document.querySelector('.team-container');
-          const index = container.querySelectorAll('.mb-4.pb-4').length - 1; // -1 for the button
+        const container = document.querySelector('#teamForm');
+        const teamCount = container.querySelectorAll('.mb-4.pb-4.border-bottom').length;
+        const newTeamIndex = teamCount;
 
-          const newCard = document.createElement('div');
-          newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
-          newCard.innerHTML = `
-              <h6 class="mb-3">Anggota Tim ` + (index + 1) + `</h6>
-              <div class="row g-3">
-                  <div class="col-md-4">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="admin-form-control" name="team[` + index + `].name" placeholder="Nama anggota tim">
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-label">Posisi</label>
-                      <input type="text" class="admin-form-control" name="team[` + index + `].role" placeholder="Posisi tim">
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-label">URL Foto</label>
-                      <input type="text" class="admin-form-control" name="team[` + index + `].image" placeholder="/path/to/image.png">
-                  </div>
-                  <div class="col-md-12 d-flex justify-content-end">
-                      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeTeam(this)">
-                        <i class="bi bi-trash me-1"></i>Hapus
-                      </button>
-                  </div>
-              </div>
-          `;
+        const newCard = document.createElement('div');
+        newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
+        newCard.innerHTML = `
+          <h6 class="mb-3">Anggota Tim ` + (newTeamIndex + 3) + `</h6> <!-- +3 because we already have 3 -->
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Nama</label>
+              <input type="text" class="admin-form-control" name="team[` + newTeamIndex + `].name" placeholder="Nama anggota tim">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Posisi</label>
+              <input type="text" class="admin-form-control" name="team[` + newTeamIndex + `].role" placeholder="Posisi tim">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">URL Foto</label>
+              <input type="text" class="admin-form-control" name="team[` + newTeamIndex + `].image" placeholder="/path/to/image.png">
+            </div>
+          </div>
+        `;
 
-          // Insert before the save button
-          const saveBtn = container.querySelector('.col-12');
-          container.insertBefore(newCard, saveBtn);
+        // Insert before the save button
+        const saveBtn = container.querySelector('.col-12');
+        container.insertBefore(newCard, saveBtn);
       }
 
       function removeTeam(button) {
-          button.closest('.mb-4').remove();
+        button.closest('.mb-4.pb-4.border-bottom').remove();
       }
 
-      // Add Testimonial
+      // For Testimonials - add new testimonial
       function addTestimonial() {
-          const container = document.querySelector('.testimonials-container');
-          const index = container.querySelectorAll('.mb-4.pb-4').length - 1; // -1 for the button
+        const container = document.querySelector('#testimonialForm');
+        const testimonialCount = container.querySelectorAll('.mb-4.pb-4.border-bottom').length;
+        const newTestimonialIndex = testimonialCount;
 
-          const newCard = document.createElement('div');
-          newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
-          newCard.innerHTML = `
-              <h6 class="mb-3">Testimoni ` + (index + 1) + `</h6>
-              <div class="row g-3">
-                  <div class="col-md-4">
-                      <label class="form-label">Nama</label>
-                      <input type="text" class="admin-form-control" name="testimonials[` + index + `].author" placeholder="Nama pengguna">
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-label">Perusahaan</label>
-                      <input type="text" class="admin-form-control" name="testimonials[` + index + `].business" placeholder="Nama perusahaan">
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-label">URL Foto</label>
-                      <input type="text" class="admin-form-control" name="testimonials[` + index + `].image" placeholder="/path/to/image.png">
-                  </div>
-                  <div class="col-md-12">
-                      <label class="form-label">Testimoni</label>
-                      <textarea class="admin-form-control" name="testimonials[` + index + `].text" rows="3" placeholder="Tulis testimoni di sini..."></textarea>
-                  </div>
-                  <div class="col-md-12 d-flex justify-content-end">
-                      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeTestimonial(this)">
-                        <i class="bi bi-trash me-1"></i>Hapus
-                      </button>
-                  </div>
-              </div>
-          `;
+        const newCard = document.createElement('div');
+        newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
+        newCard.innerHTML = `
+          <h6 class="mb-3">Testimoni ` + (newTestimonialIndex + 2) + `</h6> <!-- +2 because we already have 2 -->
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Nama</label>
+              <input type="text" class="admin-form-control" name="testimonials[` + newTestimonialIndex + `].author" placeholder="Nama pengguna">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Perusahaan</label>
+              <input type="text" class="admin-form-control" name="testimonials[` + newTestimonialIndex + `].business" placeholder="Nama perusahaan">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">URL Foto</label>
+              <input type="text" class="admin-form-control" name="testimonials[` + newTestimonialIndex + `].image" placeholder="/path/to/image.png">
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Testimoni</label>
+              <textarea class="admin-form-control" name="testimonials[` + newTestimonialIndex + `].text" rows="3" placeholder="Tulis testimoni di sini..."></textarea>
+            </div>
+          </div>
+        `;
 
-          // Insert before the save button
-          const saveBtn = container.querySelector('.col-12');
-          container.insertBefore(newCard, saveBtn);
+        // Insert before the save button
+        const saveBtn = container.querySelector('.col-12');
+        container.insertBefore(newCard, saveBtn);
       }
 
       function removeTestimonial(button) {
-          button.closest('.mb-4').remove();
+        button.closest('.mb-4.pb-4.border-bottom').remove();
       }
 
-      // Add FAQ
+      // For FAQ - add new FAQ
       function addFAQ() {
-          const container = document.querySelector('.faq-container');
-          const index = container.querySelectorAll('.mb-4.pb-4').length - 1; // -1 for the button
+        const container = document.querySelector('#faqForm');
+        const faqCount = container.querySelectorAll('.mb-4.pb-4.border-bottom').length;
+        const newFaqIndex = faqCount;
 
-          const newCard = document.createElement('div');
-          newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
-          newCard.innerHTML = `
-              <h6 class="mb-3">FAQ ` + (index + 1) + `</h6>
-              <div class="row g-3">
-                  <div class="col-md-12">
-                      <label class="form-label">Pertanyaan</label>
-                      <input type="text" class="admin-form-control" name="faqs[` + index + `].question" placeholder="Pertanyaan">
-                  </div>
-                  <div class="col-md-12">
-                      <label class="form-label">Jawaban</label>
-                      <textarea class="admin-form-control" name="faqs[` + index + `].answer" rows="3" placeholder="Jawaban"></textarea>
-                  </div>
-                  <div class="col-md-12 d-flex justify-content-end">
-                      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill" onclick="removeFaq(this)">
-                        <i class="bi bi-trash me-1"></i>Hapus
-                      </button>
-                  </div>
-              </div>
-          `;
+        const newCard = document.createElement('div');
+        newCard.className = 'mb-4 pb-4 border-bottom border-white-10';
+        newCard.innerHTML = `
+          <h6 class="mb-3">FAQ ` + (newFaqIndex + 3) + `</h6> <!-- +3 because we already have 3 -->
+          <div class="row g-3">
+            <div class="col-md-12">
+              <label class="form-label">Pertanyaan</label>
+              <input type="text" class="admin-form-control" name="faqs[` + newFaqIndex + `].question" placeholder="Pertanyaan">
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Jawaban</label>
+              <textarea class="admin-form-control" name="faqs[` + newFaqIndex + `].answer" rows="3" placeholder="Jawaban"></textarea>
+            </div>
+          </div>
+        `;
 
-          // Insert before the save button
-          const saveBtn = container.querySelector('.col-12');
-          container.insertBefore(newCard, saveBtn);
+        // Insert before the save button
+        const saveBtn = container.querySelector('.col-12');
+        container.insertBefore(newCard, saveBtn);
       }
 
       function removeFaq(button) {
-          button.closest('.mb-4').remove();
+        button.closest('.mb-4.pb-4.border-bottom').remove();
       }
 
       function addFokus() {
