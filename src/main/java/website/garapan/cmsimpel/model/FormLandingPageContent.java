@@ -38,6 +38,9 @@ public class FormLandingPageContent {
     // FAQ Section
     private List<FaqItemForm> faqs;
 
+    // Tech Stack Section
+    private List<String> techStack;
+
     // Contact Section - Using individual fields
     private String contactAddress;
     private String contactEmail;
@@ -121,6 +124,9 @@ public class FormLandingPageContent {
 
     public String getLogoPath() { return logoPath; }
     public void setLogoPath(String logoPath) { this.logoPath = logoPath; }
+
+    public List<String> getTechStack() { return techStack; }
+    public void setTechStack(List<String> techStack) { this.techStack = techStack; }
 
     // Inner classes for form binding
     public static class StatItemForm {

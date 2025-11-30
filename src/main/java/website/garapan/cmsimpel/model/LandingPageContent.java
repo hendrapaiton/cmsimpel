@@ -47,6 +47,9 @@ public class LandingPageContent {
     private String siteDescription;
     private String logoPath;
 
+    // Tech Stack Section
+    private List<String> techStack;
+
     // Getters
     public String getHeroTitle() {
         return heroTitle;
@@ -136,6 +139,10 @@ public class LandingPageContent {
         return logoPath;
     }
 
+    public List<String> getTechStack() {
+        return techStack;
+    }
+
     // Setters
     public void setHeroTitle(String heroTitle) {
         this.heroTitle = heroTitle;
@@ -223,5 +230,9 @@ public class LandingPageContent {
 
     public void setLogoPath(String logoPath) {
         this.logoPath = logoPath;
+    }
+
+    public void setTechStack(List<String> techStack) {
+        this.techStack = techStack;
     }
 }
