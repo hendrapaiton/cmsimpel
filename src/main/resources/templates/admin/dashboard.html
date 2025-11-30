@@ -61,8 +61,36 @@
       }
       .main-content {
         margin-left: 260px;
-        padding: 2rem;
+        padding: 1rem 2rem;
         min-height: 100vh;
+      }
+      .dashboard-header {
+        position: fixed;
+        left: 260px; /* Menyesuaikan dengan lebar sidebar */
+        top: 0;
+        right: 0;
+        background-color: #000;
+        padding: 0.75rem 2rem; /* Menyesuaikan dengan padding .main-content */
+        z-index: 100;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 5.7rem;
+      }
+      .dashboard-content {
+        margin-top: 6rem;
+      }
+      .dashboard-header h2 {
+        margin-bottom: 0.25rem;
+      }
+      .dashboard-header p {
+        margin-top: 1rem;
+        margin-bottom: 0;
+      }
+      .dashboard-header .admin-success-message {
+        margin-top: 0.5rem;
       }
       .form-card {
         background: rgba(255, 255, 255, 0.05);
@@ -219,9 +247,9 @@
     </div>
 
     <div class="main-content">
-      <div class="mb-5">
-        <h2 class="fw-bold mb-2">Dashboard CMS</h2>
-        <p class="text-white-50">
+      <div class="dashboard-header mb-2">
+        <h3 class="fw-bold">Garapan Website</h3>
+        <p class="text-white-50 mb-3" style="margin-top: -1rem;">
           Kelola konten landing page Anda dengan mudah
         </p>
         <div th:if="${param.success}" class="admin-success-message">
@@ -229,21 +257,23 @@
         </div>
       </div>
 
-      <form method="post" th:action="@{/admin/save}" th:object="${content}">
+      <div class="dashboard-content">
+        <form method="post" th:action="@{/admin/save}" th:object="${content}" enctype="multipart/form-data">
         <div id="siteinfo-section" class="form-card">
           <div class="section-header">
             <i class="bi bi-info-circle text-primary"></i>
             <h4 class="fw-bold mb-0">Site Info</h4>
           </div>
-          <div class="row g-3">
+          <div class="row g-4">
             <div class="col-md-12">
               <label class="form-label">Judul Website</label>
               <input
                 type="text"
                 class="admin-form-control"
                 th:field="*{siteTitle}"
-                placeholder="Judul Website"
+                placeholder="Masukkan judul website Anda"
               />
+              <div class="form-text text-white-50">Judul yang akan muncul di tab browser</div>
             </div>
             <div class="col-md-12">
               <label class="form-label">Nama Website</label>
@@ -251,21 +281,42 @@
                 type="text"
                 class="admin-form-control"
                 th:field="*{siteName}"
-                placeholder="Nama Website"
+                placeholder="Masukkan nama website Anda"
               />
+              <div class="form-text text-white-50">Nama yang akan ditampilkan di header dan elemen lainnya</div>
             </div>
             <div class="col-md-12">
               <label class="form-label">Deskripsi Website</label>
-              <textarea class="admin-form-control" th:field="*{siteDescription}" rows="3" placeholder="Deskripsi Website"></textarea>
+              <textarea class="admin-form-control" th:field="*{siteDescription}" rows="4" placeholder="Deskripsikan website Anda secara singkat"></textarea>
+              <div class="form-text text-white-50">Deskripsi untuk meta tag dan SEO</div>
             </div>
             <div class="col-md-12">
-              <label class="form-label">Path Logo</label>
-              <input
-                type="text"
-                class="admin-form-control"
-                th:field="*{logoPath}"
-                placeholder="/path/to/logo.png"
-              />
+              <label class="form-label">Logo Website</label>
+              <div class="d-flex flex-column flex-md-row align-items-start gap-4">
+                <div class="d-flex flex-column gap-3 flex-fill">
+                  <div class="border rounded p-3 bg-dark bg-opacity-25">
+                    <label class="form-label mb-2">Pilih Logo Baru</label>
+                    <input type="file" class="form-control" name="logoFile" accept="image/*" onchange="previewLogo(this)" />
+                    <div class="form-text text-white-50">Format: PNG, JPG, JPEG (Maks. 2MB)</div>
+                  </div>
+                  <input
+                    type="text"
+                    class="admin-form-control"
+                    th:field="*{logoPath}"
+                    placeholder="/path/to/logo.png"
+                    id="logoPathInput"
+                  />
+                  <div class="form-text text-white-50">Path logo saat ini atau path baru jika tidak mengupload</div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                  <div class="mb-2 text-center">
+                    <span class="text-white-50 small">Pratinjau Logo</span>
+                  </div>
+                  <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 80px;">
+                    <img id="logoPreview" th:src="@{*{logoPath}}" alt="Logo Preview" class="img-fluid" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkxvZ288L3RleHQ+Cjwvc3ZnPgo=';" style="max-width: 100%; max-height: 100%;">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -932,6 +983,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -1228,6 +1280,21 @@
     </script>
 
     <script>
+        // Function to preview logo
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    document.getElementById('logoPreview').src = e.target.result;
+                    // Also update the path input field with a temporary value indicating new file
+                    document.getElementById('logoPathInput').value = 'uploads/' + input.files[0].name;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
         // Handle success message auto-dismiss
         document.addEventListener('DOMContentLoaded', function() {
             const successMsg = document.querySelector('.admin-success-message');
