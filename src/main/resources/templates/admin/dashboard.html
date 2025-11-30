@@ -292,9 +292,9 @@
             </div>
             <div class="col-md-12">
               <label class="form-label">Logo Website</label>
-              <div class="d-flex flex-column flex-md-row align-items-start gap-4">
+              <div class="d-flex flex-column flex-md-row align-items-center gap-4">
                 <div class="d-flex flex-column gap-3 flex-fill">
-                  <div class="border rounded p-3 bg-dark bg-opacity-25">
+                  <div class="border rounded p-3 bg-dark bg-opacity-25" style="min-height: 120px;">
                     <label class="form-label mb-2">Pilih Logo Baru</label>
                     <input type="file" class="form-control" name="logoFile" accept="image/*" onchange="previewLogo(this)" />
                     <div class="form-text text-white-50">Format: PNG, JPG, JPEG (Maks. 2MB)</div>
@@ -312,7 +312,7 @@
                   <div class="mb-2 text-center">
                     <span class="text-white-50 small">Pratinjau Logo</span>
                   </div>
-                  <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 80px;">
+                  <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
                     <img id="logoPreview" th:src="@{*{logoPath}}" alt="Logo Preview" class="img-fluid" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkxvZ288L3RleHQ+Cjwvc3ZnPgo=';" style="max-width: 100%; max-height: 100%;">
                   </div>
                 </div>
