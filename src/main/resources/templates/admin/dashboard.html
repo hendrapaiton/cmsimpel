@@ -301,11 +301,9 @@
                       <div class="form-text text-white-50">Format: PNG, JPG, JPEG (Maks. 2MB)</div>
                     </div>
                     <div class="d-flex flex-column align-items-center justify-content-center">
-                      <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
-                        <img id="logoPreview" th:src="@{*{logoPath}}" alt="Logo Preview" class="img-fluid" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA2MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMzMzIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkxvZ288L3RleHQ+Cjwvc3ZnPgo=';" style="max-width: 100%; max-height: 100%;">
-                      </div>
-                      <div class="mt-2 text-center">
-                        <span class="text-white-50 small">Pratinjau Logo</span>
+                      <div class="border rounded p-2 d-flex align-items-center justify-content-center" style="width: 120px; height: 120px; position: relative;">
+                        <img id="logoPreview" th:src="@{*{logoPath}}" alt="Logo Preview" class="img-fluid" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-text').style.display='flex';" style="max-width: 100%; max-height: 100%;">
+                        <span class="preview-text position-absolute text-white-50 small d-flex align-items-center justify-content-center" style="top: 0; left: 0; right: 0; bottom: 0;">Preview</span>
                       </div>
                     </div>
                   </div>
@@ -1288,7 +1286,10 @@
                 const reader = new FileReader();
 
                 reader.onload = function(e) {
-                    document.getElementById('logoPreview').src = e.target.result;
+                    const logoPreview = document.getElementById('logoPreview');
+                    logoPreview.src = e.target.result;
+                    logoPreview.style.display = 'block'; // Show the image
+                    logoPreview.parentElement.querySelector('.preview-text').style.display = 'none'; // Hide the preview text
                     // Also update the path input field with a temporary value indicating new file
                     document.getElementById('logoPathInput').value = 'uploads/' + input.files[0].name;
                 }
