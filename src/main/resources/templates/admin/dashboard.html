@@ -307,14 +307,6 @@
                       </div>
                     </div>
                   </div>
-                  <input
-                    type="text"
-                    class="admin-form-control"
-                    th:field="*{logoPath}"
-                    placeholder="/path/to/logo.png"
-                    id="logoPathInput"
-                  />
-                  <div class="form-text text-white-50">Path logo saat ini atau path baru jika tidak mengupload</div>
                 </div>
               </div>
             </div>
@@ -1290,8 +1282,6 @@
                     logoPreview.src = e.target.result;
                     logoPreview.style.display = 'block'; // Show the image
                     logoPreview.parentElement.querySelector('.preview-text').style.display = 'none'; // Hide the preview text
-                    // Also update the path input field with a temporary value indicating new file
-                    document.getElementById('logoPathInput').value = 'uploads/' + input.files[0].name;
                 }
 
                 reader.readAsDataURL(input.files[0]);
